@@ -10,6 +10,9 @@ def test_creates_table():
     
 def test_saves_shows_history():
     my = Recipe("test_recipe.db")
+    my.cursor.execute("DELETE FROM history")
+    my.conn.commit()
+
     my.save_history("Pasta", "Pasta", "Italy", "Do this and that")
     
     my.cursor.execute("SELECT * FROM history WHERE recipe_name='Pasta' AND recipe_country='Italy'")
